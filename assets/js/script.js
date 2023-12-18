@@ -57,10 +57,29 @@ $(function () {
     }
   });
 
-  //Listener for click events on save button
-  /* $('.saveBtn').click(function () {
 
-  }); */
+  //Listener for click events on save button
+  $('.saveBtn').click(function () {
+    var blockId = $(this).closest('.time-block').attr('id');
+    var eventSave = $(this).siblings('.description').val();
+    localStorage.setItem(blockId, eventSave);
+
+    eventNotification('Appointment added to localStorage');
+  });
+
+  function eventNotification(msg) {
+    var notification = $('#notification');
+    notification.text(msg).fadeIn();
+
+    setTimeout(function () {
+      notification.fadeOut();
+    }, 2000);
+  }
+
+
+  
+
+
 
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
