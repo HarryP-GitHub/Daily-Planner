@@ -15,7 +15,7 @@ $(function () {
     dateSuffix = 'rd';
   } if (dayDate >= 11 && dayDate <= 13) {
     dateSuffix = 'th';
-  } if (lastDigit == 4,5,6,7,8,9) {
+  } if (lastDigit == 4,5,6,7,8,9,0) {
     dateSuffix = 'th';
   }
   var currentDate = dayjs().format('dddd, MMMM D');
