@@ -9,16 +9,16 @@ $(function () {
 
   if (lastDigit == 1) {
     dateSuffix = 'st';
-  } if (lastDigit == 2) {
+  } else if (lastDigit == 2) {
     dateSuffix = 'nd';
-  } if (lastDigit == 3) {
+  } else if (lastDigit == 3) {
     dateSuffix = 'rd';
-  } if (dayDate >= 11 && dayDate <= 13) {
+  } else if (dayDate >= 11 && dayDate <= 13) {
     dateSuffix = 'th';
   } else {
     dateSuffix = 'th';
   }
-  
+
   var currentDate = dayjs().format('dddd, MMMM D');
   $('#currentDay').text(currentDate + dateSuffix);
 
