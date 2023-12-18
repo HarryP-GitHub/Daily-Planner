@@ -20,7 +20,48 @@ $(function () {
   }
   var currentDate = dayjs().format('dddd, MMMM D');
   $('#currentDay').text(currentDate + dateSuffix);
-  
+
+  //Time blocks
+  for (var hour = 9; hour <= 17; hour++) {
+    var blockId = 'hour-' + hour;
+    var block = $('<div>').addClass('row time-block').attr('id', blockId);
+
+    var hourText;
+    if (hour === 12) {
+      hourText = hour + 'PM';
+    } else if (hour > 12) {
+      hourText = (hour - 12) + 'PM';
+    } else {
+      hourText = hour + 'AM';
+    }
+
+    var hourColumn = $('<div>').addClass('col-2 col-md-1 hour text-center py-3').text(hourText);
+    var textArea = $('<textarea>').addClass('col-8 col-md-10 description').attr('rows', 3);
+    var saveBtn = $('<button>').addClass('btn saveBtn col-2 col-md-1').attr('aria-label', 'save')
+      .append($('<i>').addClass('fas fa-save').attr('aria-hidden', true));
+
+    block.append(hourColumn, textArea, saveBtn);
+
+    $('#time-block-container').append(block);
+  }
+
+  var currentHour = dayjs().hour();
+  $('.time-block').each(function () {
+    var blockHour = parseInt($(this).attr('id').split('-')[1]);
+    if (blockHour < currentHour) {
+      $(this).addClass('past');
+    } else if (blockHour === currentHour) {
+      $(this).addClass('present');
+    } else {
+      $(this).addClass('future');
+    }
+  });
+
+  //Listener for click events on save button
+  /* $('.saveBtn').click(function () {
+
+  }); */
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
