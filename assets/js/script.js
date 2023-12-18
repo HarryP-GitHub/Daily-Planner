@@ -2,6 +2,25 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+  // Displaying the date at the header
+  var dateSuffix = '';
+  var dayDate = dayjs().format('D');
+  var lastDigit = dayDate % 10;
+
+  if (lastDigit == 1) {
+    dateSuffix = 'st';
+  } if (lastDigit == 2) {
+    dateSuffix = 'nd';
+  } if (lastDigit == 3) {
+    dateSuffix = 'rd';
+  } if (dayDate >= 11 && dayDate <= 13) {
+    dateSuffix = 'th';
+  } if (lastDigit == 4,5,6,7,8,9) {
+    dateSuffix = 'th';
+  }
+  var currentDate = dayjs().format('dddd, MMMM D');
+  $('#currentDay').text(currentDate + dateSuffix);
+  
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
