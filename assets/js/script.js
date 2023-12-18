@@ -66,7 +66,7 @@ $(function () {
     var eventSave = $(this).siblings('.description').val();
     localStorage.setItem(blockId, eventSave);
 
-    eventNotification('Appointment added to localStorage');
+    eventNotification('Event added to Local Storage');
   });
 
   function eventNotification(msg) {
